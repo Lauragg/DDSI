@@ -90,20 +90,6 @@
 
 
 ## Para el subsistema de Personajes:
-
-- **RD1.1** Datos de un jugador:
-  - Alias (una cadena de hasta 20 caracteres no vacía)
-  - DNI (una cadena de 9 caracteres)
-  - Correo (cadena de caracteres de hasta 40 caracteres)
-  - Edad (dato numérico)
-
-
-- **RD1.2** Datos de un jugador a almacenar:
-  - Alias (una cadena de hasta 20 caracteres no vacía)
-  - DNI (una cadena de 9 caracteres)
-  - Correo (cadena de caracteres de hasta 40 caracteres)
-
-
 - **RD2.1** Datos de un personaje:
   - Nombre (una cadena de hasta 20 caracteres no vacía)
   - Estado (booleano)
