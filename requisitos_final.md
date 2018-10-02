@@ -273,11 +273,24 @@
 
 ## Para el subsistema de partidas y universos:
 
-  - **RS3.1** (**RF3.1**,**RD3.1**): Es necesario que las reglas del universo
+  - **RS3.1** (**RF3.1**, **RD3.1**): Es necesario que las reglas del universo
   tengan valores válidos.
 
-  - **RS3.2** (**RF3.2**, **RD3.4**): Es necesario que exista al menos un
+  - **RS3.2** (**RF3.2**, **RD3.4**): Es necesario que exista al menos un 
   universo, y este mismo tenga al menos un personaje.
+  
+  - **RS3.3** (**RF3.2**, **RD3.4**): Es necesario que el universo seleccionado
+  exista en la base de datos.
+
+  - **RS3.4** (**RF3.2**, **RD3.4**): Es necesario que los personajes escogidos
+  existan en la base de datos.
+
+  - **RS3.5** (**RF3.5**, **RD3.11**): Es necesario que la partida escogida
+  exista en la base de datos.
+
+  - **RS3.6** (**RF3.6**, **RD3.14**): Es necesario que el universo escogido
+  exista en la base de datos.
+
 
 
 # Tablas de asociaciones
@@ -367,3 +380,7 @@ RS2.4 | RF2.1 | RD2.1
 RS2.5 | RF2.2 | RD2.4
 RS3.1 | RF3.1 | RD3.1
 RS3.2 | RF3.2 | RD3.4
+RS3.3 | RF3.2 | RD3.4
+RS3.4 | RF3.2 | RD3.4
+RS3.5 | RF3.5 | RD3.11
+RS3.6 | RF3.6 | RD3.14
