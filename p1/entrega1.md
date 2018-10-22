@@ -74,26 +74,26 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 # Requisitos funcionales
 ## Para el subsistema de jugadores:
-  - **RF1.1** (E: **RD1.1**, M: **RD1.2**, S: **RD1.3**) Añadir un nuevo jugador: esta función registra un nuevo jugador en el sistema a traves de los datos del mismo proporcionados por el usuario.
-  - **RF1.2** (E: **RD1.4**, M: **RD1.5**, S: **RD1.6**) Consultar la información de un jugador: esta función muestra la información del jugador asociado al DNI recibido por el usuario.
+  - **RF1.1** (E: **RD1.1**, M: **RD1.2**, S: **RD1.3**) Añadir un nuevo jugador: esta función registra un nuevo jugador en el sistema a traves de los datos del mismo proporcionados por el administrador.
+  - **RF1.2** (E: **RD1.4**, M: **RD1.5**, S: **RD1.6**) Consultar la información de un jugador: esta función muestra la información del jugador asociado al DNI recibido por el administrador.
   - **RF1.3** (E: **RD1.7**, S: M: **RD1.8**) Consultar un listado de jugadores: esta función muestra los alias  de todos los jugadores almacenados en el sistema.
   - **RF1.4** (E: **RD1.9**, M: **RD1.10**, S: **RD1.11**) Consultar las partidas de un jugador: esta función muestra las partidas del jugador asociado al Alias recibido por entrada.
   - **RF1.5** (E: **RD1.12**, M: **RD1.13**, S: **RD1.14**) Consultar los personajes de un jugador: esta función muestra los personajes del jugador asociado al Alias recibido por entrada.
 
 ## Para el subsistema de personajes:
-  - **RF2.1** (E: **RD2.1**, M: **RD2.2**, S: **RD2.3**) Añadir un nuevo personaje: esta función registra un nuevo personaje asociado a un jugador y a un universo.
-  - **RF2.2** (E: **RD2.4**, M: **RD2.5**, S: **RD2.6**) Actualizar un personaje: Esta función se encarga de actualizar los atributos de estado de un personaje.
+  - **RF2.1** (E: **RD2.1**, M: **RD2.2**, S: **RD2.3**) Añadir un nuevo personaje:esta función registra un nuevo personaje asociado a un jugador y a un universo con los datos dados por un administrador.
+  - **RF2.2** (E: **RD2.4**, M: **RD2.5**, S: **RD2.6**) Actualizar un personaje: Esta función se encarga de actualizar los atributos de estado de un personaje con los datos datos por el administrador.
   - **RF2.3** (M: **RD2.7**, S: **RD2.8**) Consultar la información del personaje: Esta función devuelve la información básica de un personaje.
   - **RF2.4** (M: **RD2.9**, S: **RD2.10**) Consultar las partidas de un personaje: Esta función devuelve todas las partidas asociadas a un personaje concreto.
-  - **RF2.5** (M: **RD2.11**, S: **RD2.12**) Activar/Desactivar a un personaje: Tiene dos comportamientos, si al llamarlo el personaje se encuentra activado lo desactiva y viceversa.
+  - **RF2.5** (M: **RD2.11**, S: **RD2.12**) Activar/Desactivar a un personaje: Tiene dos comportamientos, si al llamarlo por el administrador el personaje se encuentra activado lo desactiva y viceversa.
 
 ## Para el subsistema de partidas y universos:
-  - **RF3.1** (E: **RD3.1**, M: **RD3.2**, S: **RD3.3**) Añadir un nuevo universo: esta función registra un nuevo universo en el sistema a través de los datos del mismo proporcionados por el usuario.
-  - **RF3.2** (E: **RD3.4**, M: **RD3.5**, S: **RD3.6**) Crear una nueva partida: esta función registra una nueva partida en el sistema a través de los datos del mismo proporcionados por el usuario: el nombre y la selección del universo sobre el que se desarrolla dada por la lista disponible de universos, y después la selección de personajes dada por la lista disponible de personajes de ese universo escogido.
+  - **RF3.1** (E: **RD3.1**, M: **RD3.2**, S: **RD3.3**) Añadir un nuevo universo: esta función registra un nuevo universo en el sistema a través de los datos del mismo proporcionados por el administrador.
+  - **RF3.2** (E: **RD3.4**, M: **RD3.5**, S: **RD3.6**) Crear una nueva partida: esta función registra una nueva partida en el sistema a través de los datos del mismo proporcionados por el administrador: el nombre y la selección del universo sobre el que se desarrolla dada por la lista disponible de universos, y después la selección de personajes dada por la lista disponible de personajes de ese universo escogido.
   - **RF3.3** (M: **RD3.7**, S: **RD3.8**) Consultar listado de partidas: esta función devuelve todas las partidas existentes en el sistema.
   - **RF3.4** (M: **RD3.9**, S: **RD3.10**) Consultar listado de universos: esta función devuelve todas los universos existentes en el sistema.
-  - **RF.3.5** (E: **RD3.11**, M: **RD3.12**, S: **RD3.13**) Consultar los datos de una partida: esta función devuelve toda la información de una partida, escogida por el usuario de la lista de partidas.
-  - **RF3.6** (E: **RD3.14**, M: **RD3.15**, S: **RD3.16**) Consultar listado de las partidas de un universo: esta función devuelve todas las partidas asociadas a un universo, escogido por el usuario de la lista de universos existentes.
+  - **RF.3.5** (E: **RD3.11**, M: **RD3.12**, S: **RD3.13**) Consultar los datos de una partida: esta función devuelve toda la información de una partida, escogida por el administrador/cliente de la lista de partidas.
+  - **RF3.6** (E: **RD3.14**, M: **RD3.15**, S: **RD3.16**) Consultar listado de las partidas de un universo: esta función devuelve todas las partidas asociadas a un universo, escogido por el administrador/cliente de la lista de universos existentes.
 
 # Requisitos de datos
 ## Para el subsistema de jugadores:

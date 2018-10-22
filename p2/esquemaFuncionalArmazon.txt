@@ -1,0 +1,36 @@
+@startuml
+
+
+storage "Subsistema de \njugadores" as sjugadores
+storage "Subsistema de \nuniversos y partidas" as suniversos
+storage "Subsistema de \npersonajes" as spersonajes
+rectangle "Cliente" as cliente
+rectangle "Administrador" as admin
+database "Personajes" as dbpersonajes
+database "Universos y partidas" as dbuniversos
+database "Jugadores" as dbjugadores
+
+cliente -> suniversos
+suniversos -> cliente
+cliente --> spersonajes
+spersonajes --> cliente
+cliente -> sjugadores
+sjugadores -> cliente
+
+admin --> suniversos
+suniversos --> admin
+admin -> spersonajes
+spersonajes -> admin
+admin --> sjugadores
+sjugadores --> admin
+
+spersonajes --> dbpersonajes
+dbpersonajes --> spersonajes
+
+suniversos --> dbuniversos
+dbuniversos --> suniversos
+
+sjugadores -> dbjugadores
+dbjugadores -> sjugadores
+
+@enduml
