@@ -1,0 +1,15 @@
+@startuml
+
+storage "Juego de Rol" as sistema
+rectangle "Usuario" as usuario
+rectangle "Administrador" as administrador
+database "Base de datos" as basedatos
+
+usuario -> sistema
+sistema -> usuario
+administrador --> sistema
+sistema --> administrador
+basedatos -> sistema
+sistema -> basedatos
+
+@enduml
