@@ -50,9 +50,10 @@ Almacenamos la siguiente información:
 
 
 - **Personaje**:
-  - Identificador.
+  - Identificador
   - Nombre.
   - Atributos de estado.
+  - Universo al que pertenece
   - Lista de partidas en las que participa.
 
 Nota: el personaje recibe una lista a completar de atributos por parte del universo.
@@ -169,18 +170,19 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 ## Para el subsistema de Personajes:
 - **RD2.1** Datos de un personaje:
-  - Identificador (un numero natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
   - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
+  - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
   - Lista de partidas en las que participa (cadena o vector con el nombre o referencia de cada una de las partidas).
 
 
 - **RD2.2** Datos de un personaje almacenado:
-  - Identificador (un numero natural único)
+  - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
   - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
+  - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
   - Lista de partidas en las que participa (cadena o vector con el nombre o referencia de cada una de las partidas).
 
 
@@ -190,11 +192,11 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 - **RD2.4** Nuevos valores de los atributos.
   - Atributos (Cadenas de caracteres con los nuevos valores de los atributos.)
-
+  - Identificador (un número natural único)
 
 - **RD2.5** Nuevos valores de atributos almacenados.
   - Atributos (Cadenas de caracteres con los nuevos valores de los atributos.)
-
+  - Identificador (un número natural único)
 
 - **RD2.6** Confirmación por salida sobre si los datos han sido correctamente actualizados o no.
   - Confirmación (Cadena de caracteres que indique si ha funcionado correctamente y en caso de que no indique el motivo.)
@@ -202,10 +204,11 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 - **RD2.7** Petición de la información de un personaje.
   - Llamada al proceso correspondiente.
+  - Identificador (un número natural único)
 
 
 - **RD2.8** Acceso a datos del personaje almacenados:
-  - Identificador (un numero natural único)
+  - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
   - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
@@ -213,7 +216,7 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 
 - **RD2.9** Salida de datos del personaje:
-  - Identificador (un numero natural único)
+  - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
   - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
@@ -221,11 +224,12 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 
 - **RD2.10** Petición de la información de las partidas de un personaje.
-  - Llamada al proceso correspondiente.
+  - Identificador (un número natural único)
 
 
 - **RD2.11** Acceso a datos de partidas asociadas a un personaje almacenadas:
   - Lista de partidas en las que participa (cadena o vector con el nombre o referencia de cada una de las partidas).
+  - Identificador (un número natural único)
 
 
 - **RD2.12** Salida de datos de partidas asociadas a un personaje:
@@ -233,11 +237,12 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 
 - **RD2.13** Petición de cambiar el estado de un personaje.
-  - Llamada al proceso correspondiente.
+  - Identificador (un número natural único)
 
 
 - **RD2.14** Acceso al dato estado de un personaje almacenado:
   - Estado (booleano)
+  - Identificador (un número natural único)
 
 
 - **RD2.15** Confirmación por salida sobre si el valor estado ha sido correctamente modificado o no.
