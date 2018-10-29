@@ -1,0 +1,40 @@
+@startuml
+rectangle "Cliente" as cliente
+rectangle "Administrador" as admin
+database "Base de datos" as db
+
+storage "Añadir Jugador (RF1.1)" as 1.1
+storage "Consultar Jugador (RF1.2)" as 1.2
+storage "Consultar Lista Jugadores (RF1.3)" as 1.3
+storage "Consultar Partida Jugador (RF1.4)" as 1.4
+storage "Consultar Personajes Jugador (RF1.5)" as 1.5
+
+admin -down-> 1.1 : "RD1.1"
+1.1 --> db : "RD1.2"
+1.1 -up-> admin : "RD1.3"
+
+admin -down-> 1.2 : "RD1.4"
+1.2 <-- db : "RD1.5"
+1.2 -up-> admin : "RD1.6"
+
+admin -down-> 1.3 : "RD1.7"
+1.3 <-- db : "RD1.8"
+1.3 -up-> admin : "RD1.9"
+
+cliente -down-> 1.3 : "RD1.7"
+1.3 -up-> cliente : "RD1.9"
+
+admin -down-> 1.4 : "RD1.10"
+1.4 <-- db : "RD1.11"
+1.4 -up-> admin : "RD1.12"
+
+cliente -down-> 1.4 : "RD1.10"
+1.4 -up-> cliente : "RD1.12"
+
+admin -down-> 1.5 : "RD1.13"
+1.5 <-- db : "RD1.14"
+1.5 -up-> admin : "RD1.15"
+
+cliente -down-> 1.5 : "RD1.13"
+1.5 -up-> cliente : "RD1.15"
+@enduml
