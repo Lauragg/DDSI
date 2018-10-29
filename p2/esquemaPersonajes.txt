@@ -1,0 +1,32 @@
+@startuml
+storage "Añadir un nuevo personaje RF2.1" as 2.1
+storage "Actualizar un nuevo peronaje RF2.2" as 2.2
+storage "Consultar la información de un personaje RF2.3" as 2.3
+storage "Consultar las partidas de un personaje RF2.4" as 2.4
+storage "Activar/Desactivar un personaje RF2.5" as 2.5
+database "Base de datos" as datos
+rectangle "Administrador" as admin
+rectangle "Cliente" as cliente
+
+2.1 -down-> datos : RD2.2
+2.2 -down-> datos : RD2.5
+2.3 <-down- datos : RD2.8
+2.4 <-down- datos : RD2.11
+2.5 -down-> datos : RD2.14
+
+admin -down-> 2.1 : RD2.1
+admin <-down- 2.1 : RD2.3
+admin -down-> 2.2 : RD2.4
+admin <-down- 2.2 : RD2.6
+admin -down-> 2.3 : "RD2.7"
+admin <-down- 2.3 : "RD2.9"
+admin -down-> 2.4 : "RD2.10"
+admin <-down- 2.4 : "RD2.12"
+admin -down-> 2.5 : "RD2.13"
+admin <-down- 2.5 : "RD2.15"
+
+cliente -down->  2.3 : "RD2.7"
+cliente <-down-  2.3 : "RD2.9"
+cliente -down->  2.4 : "RD2.10"
+cliente <-down-  2.4 : RD2.12
+@enduml
