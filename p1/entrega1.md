@@ -252,7 +252,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
     - Género (una cadena de hasta 40 caracteres no vacía)
     - Reglas del universo (serie de campos diversos rellenados por el usuario)
 
-
   - **RD3.2** Datos de un universo almacenados:
     - Nombre (una cadena de hasta 20 caracteres no vacía y única)
     - Género (una cadena de hasta 40 caracteres no vacía)
@@ -260,19 +259,17 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
     - Lista de personajes (lista de los personajes que pertenecen al universo)
     - Lista de partidas (lista de partidas que utilizan al universo)
 
-
   - **RD3.3** Mensaje de salida de un universo:
     - Mensaje (texto de confirmación que todo ha sido correcto o si ha habido
     algún error al crear el universo)
 
-
   - **RD3.4** Datos de una partida:
-    - Identificador (un número natural único)
     - Nombre (una cadena de hasta 20 caracteres no vacía)
     - Universo (universo que se ha seleccionado donde se desarrolla la partida)
     - Personajes (lista de personajes del universo seleccionado que van a jugar)
 
   - **RD3.5** Datos de una partida almacenada:
+    - Identificador (un número natural único)
     - Nombre (una cadena de hasta 20 caracteres no vacía)
     - Universo (universo que se ha seleccionado donde se desarrolla la partida)
     - Personajes (lista de personajes del universo seleccionado que van a jugar)
@@ -280,40 +277,31 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
      empezando con la fecha de creación de la partida, y creando una entrada 
      cada vez que se pausa la partida)
 
-
   - **RD3.6** Mensaje de salida de una partida:
     - Mensaje (texto de confirmación que todo ha sido correcto o si ha habido
     algun error al crear la partida)
 
-
   - **RD3.7** Petición de la información de un listado de partidas.
     - Llamada al proceso correspondiente.
-
 
   - **RD3.8** Datos de consulta de listado de partidas almacenados:
     - Partidas (las partidas que hay en la base de datos)
 
-
   - **RD3.9** Salida de listado de partidas:
     - Lista de partidas (lista de partidas que hay en la base de datos)
-
 
   - **RD3.10** Petición de la información de un listado de universos.
     - Llamada al proceso correspondiente.
 
-
   - **RD3.11** Datos de consulta de listado de universos almacenados:
     - Universos (los universos que hay en la base de datos)
-
 
   - **RD3.12** Salida de listado de universos:
     - Lista de universos (lista de universos que hay en la base de datos)
 
-
   - **RD3.13** Datos de consulta de datos de una partida:
     - Partida (la partida que ha escogido el usuario para consultar su
     información)
-
 
   - **RD3.14** Datos de consulta de datos de una partida almacenados:
     - Partidas (todas las partidas que hay en la base de datos)
@@ -324,16 +312,15 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
     - Log de fechas (listado de fechas, empezando con la fecha de creación de la partida, y creando una entrada cada vez que se pausa la partida)
 
   - **RD3.15** Salida de datos de una partida:
+    - Identificador (un número natural único)
     - Nombre (una cadena de hasta 20 caracteres no vacía)
     - Universo (universo que se ha seleccionado donde se desarrolla la partida)
     - Personajes (lista de personajes del universo seleccionado que van a jugar)
     - Log de fechas (listado de fechas, empezando con la fecha de creación de
     la partida, y creando una entrada cada vez que se pausa la partida)
 
-
   - **RD3.16** Datos de consulta listado de las partidas de un universo:
     - Universo (universo escogido por el usuario para consultar sus partidas)
-
 
   - **RD3.17** Datos de consulta listado de las partidas de un universo almacenados:
     - Universos (todos los universos que hay en la base de datos)
