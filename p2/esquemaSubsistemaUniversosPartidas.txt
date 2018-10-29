@@ -10,6 +10,11 @@ rectangle "Cliente" as cliente
 rectangle "Administrador" as admin
 database "Base de datos" as db
 
+r1 -[hidden] r2
+r2 -[hidden] r3
+r3 -[hidden] r4
+r4 -[hidden] r5
+r5 -[hidden] r6
 
 admin -down-> r1 : RD3.1
 admin -down-> r2 : RD3.4
