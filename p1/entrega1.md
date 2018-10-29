@@ -172,7 +172,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 ## Para el subsistema de Personajes:
 - **RD2.1** Datos de un personaje:
   - Nombre (una cadena de hasta 20 caracteres no vacía)
-  - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
   - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
   - Lista de partidas en las que participa (cadena o vector con el nombre o referencia de cada una de las partidas).
@@ -181,7 +180,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 - **RD2.2** Datos de un personaje almacenado:
   - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
-  - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
   - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
   - Lista de partidas en las que participa (cadena o vector con el nombre o referencia de cada una de las partidas).
@@ -211,7 +209,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 - **RD2.8** Acceso a datos del personaje almacenados:
   - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
-  - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
   - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
 
@@ -219,7 +216,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 - **RD2.9** Salida de datos del personaje:
   - Identificador (un número natural único)
   - Nombre (una cadena de hasta 20 caracteres no vacía)
-  - Estado (booleano)
   - Atributos de estado ( referencia a un archivo de texto donde están almacenados dichos datos).
   - Universo al que pertenece (una cadena de hasta 40 caracteres con el nombre del universo).
 
