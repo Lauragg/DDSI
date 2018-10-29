@@ -67,6 +67,7 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
 
 - **Partida**:
+  - Identificador
   - Nombre
   - Log de fechas
   - Lista de personajes que participan
