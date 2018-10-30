@@ -77,7 +77,7 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 # Requisitos funcionales
 ## Para el subsistema de jugadores:
   - **RF1.1** (E: **RD1.1**, M: **RD1.2**, S: **RD1.3**) Añadir un nuevo jugador: esta función registra un nuevo jugador en el sistema a traves de los datos del mismo proporcionados por el administrador.
-  - **RF1.2** (E: **RD1.4**, M: **RD1.5**, S: **RD1.6**) Consultar la información de un jugador: esta función muestra la información del jugador asociado al DNI recibido por el administrador.
+  - **RF1.2** (E: **RD1.4**, M: **RD1.5**, S: **RD1.6**) Consultar la información de un jugador: esta función muestra la información del jugador asociado al DNI y Alias recibido por el administrador.
   - **RF1.3** (E: **RD1.7**, M: **RD1.8** S: **RD1.9**) Consultar un listado de jugadores: esta función muestra los alias  de todos los jugadores almacenados en el sistema.
   - **RF1.4** (E: **RD1.10**, M: **RD1.11**, S: **RD1.12**) Consultar las partidas de un jugador: esta función muestra las partidas del jugador asociado al Alias recibido por entrada.
   - **RF1.5** (E: **RD1.13**, M: **RD1.14**, S: **RD1.15**) Consultar los personajes de un jugador: esta función muestra los personajes del jugador asociado al Alias recibido por entrada.
@@ -118,6 +118,7 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
   - **RD1.4** DNI de un jugador:
     - DNI (una cadena de 9 caracteres)
+    - Alias (una cadena de hasta 20 caracteres no vacía)
 
 
   - **RD1.5** Datos de un jugador almacenados:
@@ -273,8 +274,8 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
     - Nombre (una cadena de hasta 20 caracteres no vacía)
     - Universo (universo que se ha seleccionado donde se desarrolla la partida)
     - Personajes (lista de personajes del universo seleccionado que van a jugar)
-    - Log de fechas (referencia a un archivo donde se guarda el listado de fechas, 
-     empezando con la fecha de creación de la partida, y creando una entrada 
+    - Log de fechas (referencia a un archivo donde se guarda el listado de fechas,
+     empezando con la fecha de creación de la partida, y creando una entrada
      cada vez que se pausa la partida)
 
   - **RD3.6** Mensaje de salida de una partida:
