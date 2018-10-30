@@ -1,0 +1,17 @@
+@startuml
+
+storage "Consultar listado\n universos 3.4" as r
+
+node " " as hex {
+
+    rectangle "Universo" as uni
+
+    interface "Nombre" as nom #black
+
+    uni =down= nom
+
+}
+
+hex =left= r
+
+@enduml
