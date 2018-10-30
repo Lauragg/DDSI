@@ -1,0 +1,43 @@
+@startuml
+
+node "Subsistema de universos y partidas" as hex {
+
+    rectangle "Universo" as uni
+    rectangle "Partida" as par
+    rectangle "Personaje" as pers
+
+    cloud "engloba" as eng
+    cloud "participa" as part
+    cloud "habita" as hab
+
+    par =right= "N" eng
+    eng =right= "1" uni
+    par =up= "N" part
+    part =right= "N" pers
+    uni =up= "1" hab
+    hab =left= "N" pers
+
+    interface "Nombre" as nom #black
+    interface "Género" as gen #white
+    interface "Reglas" as rel #white
+
+    uni =down= nom
+    uni =down= gen
+    uni =down= rel
+
+    interface "Identificador" as id #black
+    interface "Nombre" as nom2 #white
+    interface "Log fechas" as log #white
+
+    par =down= id
+    par =down= nom2
+    par =down= log
+
+
+    interface "Identificador" as id2 #black
+
+    pers =up= id2
+
+}
+
+@enduml
