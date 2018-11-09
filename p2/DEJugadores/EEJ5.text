@@ -1,0 +1,29 @@
+@startuml
+
+storage "ConsultarPersonajesJugador (RF1.5)" as r
+
+node " " as hex {
+
+    rectangle "Jugador" as j
+    rectangle "Personaje" as pj
+
+    cloud "maneja" as jpj
+
+    jpj =left= "1" j
+    jpj =right= "N" pj
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    j =down= dni
+    j =down= alias
+
+    interface "Identificador" as id #black
+    interface "Nombre" as nomb
+    pj =down= id
+    pj =down= nomb
+
+}
+
+hex =left= r
+
+@enduml

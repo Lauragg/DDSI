@@ -1,0 +1,16 @@
+@startuml
+storage "ConsultarListaJugadores (RF1.3)" as r
+
+node " " as hex {
+
+    rectangle "Jugador" as j
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    j =down= dni
+    j =down= alias
+
+}
+
+hex =left= r
+@enduml

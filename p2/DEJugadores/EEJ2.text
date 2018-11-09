@@ -1,0 +1,20 @@
+@startuml
+
+storage "ConsultarJugador (RF1.2)" as r
+
+node " " as hex {
+
+    rectangle "Jugador" as j
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    interface "Correo" as correo
+    j =down= dni
+    j =down= alias
+    j =down= correo
+
+}
+
+hex =left= r
+
+@enduml
