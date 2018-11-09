@@ -1,0 +1,41 @@
+@startuml
+
+storage "Añadir\nUsuario 3.1" as r1
+
+node " " as a {
+    rectangle "Universo" as uni
+    rectangle "Personaje" as per
+    rectangle "Partida" as par
+
+    cloud "habita" as hab
+    cloud "engloba" as eng
+
+    uni =right= "1" hab
+    hab =right= "N" per
+
+    uni =left= "1" eng
+    eng =left= "N" par
+
+    interface "Nombre" as nom #black
+    interface "Género" as gen #white
+    interface "Reglas" as rel #white
+
+    uni =down= gen
+    uni =down= rel
+    uni =down= nom
+
+    nom -[hidden]right- gen
+
+    interface "Identificador" as id1 #black
+
+    par =down= id1
+
+    interface "Identificador" as id2 #black
+
+    per =down= id2
+
+}
+
+a =left= r1
+
+@enduml
