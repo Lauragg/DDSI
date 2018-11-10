@@ -1,0 +1,64 @@
+# Memora de la práctica 2
+
+## Subsistemas realizados por cada componente
+
+José Antonio Álvarez Ocete - Subsistema de jugadores
+Laura Gómez - Subsistema de personajes
+Miguel Lentisco Ballesteros - Subsistema de universos y partidas
+
+## Diagrama de Caja Negra
+
+![](diagramaCajaNegra.png)
+
+## Diagrama Funcional Armazón
+
+![](esquemaFuncionalArmazon.png)
+
+## Diagramas funcionales de los subsistemas
+
+![](DFJ.png)
+
+![](DFP.png)
+
+![](DFUP.png)
+
+## Esquemas externos del subsistema de Jugadores
+
+![](DEJugadores/EEJ1.png)
+
+![](DEJugadores/EEJ2.png)
+
+![](DEJugadores/EEJ3.png)
+
+![](DEJugadores/EEJ4.png)
+
+![](DEJugadores/EEJ5.png)
+
+![](DEJugadores/EEJ.png)
+
+## Esquemas externos del subsistema de Personajes
+
+
+## Esquemas externos del subsistema de Universos y Partidas
+
+![](DEUniversosPartidas/DEUP1.png)
+
+![](DEUniversosPartidas/DEUP2.png)
+
+![](DEUniversosPartidas/DEUP3.png)
+
+![](DEUniversosPartidas/DEUP4.png)
+
+![](DEUniversosPartidas/DEUP5.png)
+
+![](DEUniversosPartidas/DEUP6.png)
+
+![](DEUniversosPartidas/DEUP.png)
+
+## Esquema entidad-relación del sistema completo
+
+Al tener unicamente un contenedor su diagrama externo es exactamente el mismo
+que el diagrama externo del sistema completo. Esto es, el diagrama
+entidad-relación.
+
+INCLUIR AQUI EL DIAGRAMA ENTIDAD RELACION
