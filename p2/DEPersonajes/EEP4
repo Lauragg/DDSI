@@ -1,0 +1,30 @@
+@startuml
+storage "Consultar las partidas de un personaje RF(2.4)" as r
+node " " as hex {
+    rectangle "Personaje" as pj
+    rectangle "Partida" as p
+    'rectangle "Universo" as u
+
+    cloud "participa" as participa
+   ' cloud "habita" as habita
+
+    participa =up= "1" pj
+    participa =down= "N" p
+
+
+
+    interface "Identificador" as idpj #black
+
+    pj =up= idpj
+
+
+    interface "Identificador" as idp #black
+    interface "Nombre" as nombp
+    p =left= idp
+    p =right= nombp
+
+
+}
+
+hex =left= r
+@enduml

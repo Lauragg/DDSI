@@ -1,0 +1,37 @@
+@startuml
+storage "Consultr la información de un personaje RF(2.3)" as r
+node " " as hex {
+    rectangle "Personaje" as pj
+  '  rectangle "Partida" as p
+    rectangle "Universo" as u
+
+  '  cloud "participa" as participa
+    cloud "habita" as habita
+
+   ' participa =up= "1" pj
+   ' participa =down= "N" p
+    habita =left= "N" pj
+    habita =right= "1" u
+
+
+    interface "Identificador" as idpj #black
+    interface "Nombre" as nombpj
+    interface "Atributos" as atri
+    interface "Estado" as estado
+    pj =up= idpj
+    pj =up= nombpj
+    pj =up= atri
+    pj =up= estado
+
+
+    interface "Identificador" as idu #black
+    interface "Nombre" as nomu
+
+    u =down= idu
+    u =down= nomu
+
+}
+
+hex =left= r
+
+@enduml

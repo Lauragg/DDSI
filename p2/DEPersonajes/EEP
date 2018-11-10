@@ -1,0 +1,47 @@
+@startuml
+node "Subsistema de Personajes" as hex {
+
+    rectangle "Jugador" as j
+    rectangle "Personaje" as pj
+    rectangle "Partida" as p
+    rectangle "Universo" as u
+
+
+    cloud "maneja" as maneja
+    cloud "participa" as participa
+    cloud "habita" as habita
+
+    maneja =left= "1" j
+    maneja =right= "N" pj
+    participa =up= "1" pj
+    participa =down= "N" p
+    habita =left= "N" pj
+    habita =right= "1" u
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    j =up= dni
+    j =up= alias
+
+    interface "Identificador" as idpj #black
+    interface "Nombre" as nombpj
+    interface "Atributos" as atri
+    interface "Estado" as estado
+    pj =up= idpj
+    pj =up= nombpj
+    pj =up= atri
+    pj =up= estado
+
+    interface "Identificador" as idp #black
+    interface "Nombre" as nombp
+    p =left= idp
+    p =right= nombp
+
+    interface "Identificador" as idu #black
+    interface "Nombre" as nomu
+
+    u =down= idu
+    u =down= nomu
+
+}
+@enduml
