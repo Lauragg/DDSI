@@ -20,8 +20,8 @@ node "Subsistema de Personajes" as hex {
 
     interface "DNI" as dni #black
     interface "Alias" as alias
-    j =up= dni
-    j =up= alias
+    j =down= dni
+    j =down= alias
 
     interface "Identificador" as idpj #black
     interface "Nombre" as nombpj
@@ -37,11 +37,9 @@ node "Subsistema de Personajes" as hex {
     p =left= idp
     p =right= nombp
 
-    interface "Identificador" as idu #black
-    interface "Nombre" as nomu
+    interface "Nombre" as idu #black
 
     u =down= idu
-    u =down= nomu
 
 }
 @enduml

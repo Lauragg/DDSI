@@ -1,5 +1,5 @@
 @startuml
-storage "Consultr la información de un personaje RF(2.3)" as r
+storage "Consultar la información de un personaje RF(2.3)" as r
 node " " as hex {
     rectangle "Personaje" as pj
   '  rectangle "Partida" as p
@@ -24,14 +24,10 @@ node " " as hex {
     pj =up= estado
 
 
-    interface "Identificador" as idu #black
-    interface "Nombre" as nomu
-
+    interface "Nombre" as idu #black
     u =down= idu
-    u =down= nomu
 
 }
 
 hex =left= r
-
 @enduml

@@ -28,11 +28,9 @@ node " " as hex {
     p =left= idp
     ' p =right= nombp
 
-    interface "Identificador" as idu #black
-    ' interface "Nombre" as nomu
+    interface "Nombre" as idu #black
 
     u =down= idu
-    ' u =down= nomu
 
 }
 

@@ -1,5 +1,4 @@
 @startuml
-
 node "Diagrama Entidad Relación del sistema" as hex {
 
     rectangle "Universo" as universo
@@ -28,23 +27,36 @@ node "Diagrama Entidad Relación del sistema" as hex {
     interface "Género" as gen #white
     interface "Reglas" as rel #white
 
-    uni =down= nom
-    uni =down= gen
-    uni =down= rel
+    universo =down= nom
+    universo =down= gen
+    universo =down= rel
 
     interface "Identificador" as id #black
     interface "Nombre" as nom2 #white
     interface "Log fechas" as log #white
 
-    par =down= id
-    par =down= nom2
-    par =down= log
+    partida =right= id
+    partida =down= nom2
+    partida =down= log
 
 
     interface "Identificador" as id2 #black
+    interface "Nombre" as nom3
+    interface "Atributos" as atri
+    interface "Estado" as estado
 
-    pers =up= id2
+    personaje =left= id2
+    personaje =up= nom3
+    personaje =up= atri
+    personaje =up= estado
+
+    interface "Identificador" as id3 #black
+    interface "Alias" as alias
+    interface "Correo" as correo
+
+    jugador =up= id3
+    jugador =up= alias
+    jugador =up= correo
 
 }
-
 @enduml
