@@ -47,7 +47,8 @@ Almacenamos la siguiente información:
   - DNI
   - Correo
   - Lista de personajes
-
+  - Lista de partidas en que participa.
+  
 
 - **Personaje**:
   - Identificador
