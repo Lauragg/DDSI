@@ -1,0 +1,27 @@
+@startuml
+storage "AñadirJugador (RF1.1)" as r
+
+node " " as hex {
+
+    rectangle "Jugador" as j
+    rectangle "Personaje" as pj
+
+    cloud "maneja" as jpj
+
+    jpj =left= "1" j
+    jpj =right= "N" pj
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    interface "Correo" as correo
+    j =down= dni
+    j =down= alias
+    j =down= correo
+
+    interface "Identificador" as id #black
+    pj =down= id
+
+}
+
+hex =left= r
+@enduml

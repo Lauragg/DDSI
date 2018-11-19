@@ -1,0 +1,50 @@
+@startuml
+
+storage "Añadir nuevo \nuniverso (RF3.1)" as r1
+storage "Crear nueva \npartida (RF3.2)" as r2
+storage "Consultar listado \npartidas (RF3.3)" as r3
+storage "Consultar listado \nuniversos (RF3.4)" as r4
+storage "Consultar datos \npartida (RF3.5)" as r5
+storage "Consultar listado partidas \nde universo (RF3.6)" as r6
+rectangle "Cliente" as cliente
+rectangle "Administrador" as admin
+database "Base de datos" as db
+
+r1 -[hidden] r2
+r2 -[hidden] r3
+r3 -[hidden] r4
+r4 -[hidden] r5
+r5 -[hidden] r6
+
+admin -down-> r1 : RD3.1
+admin -down-> r2 : RD3.4
+admin -down-> r3 : RD3.7
+admin -down-> r4 : RD3.10
+admin -down-> r5 : RD3.13
+admin -down-> r6 : RD3.16
+
+admin <-down- r1: RD3.3
+admin <-down- r2: RD3.6
+admin <-down- r3 : RD3.9
+admin <-down- r4 : RD3.12
+admin <-down- r5: RD3.15
+admin <-down- r6: RD3.18
+
+cliente <-down- r3 : RD3.9
+cliente <-down- r4 : RD3.1
+cliente <-down- r5: RD3.15
+cliente <-down- r6: RD3.18
+
+cliente -down-> r3 : RD3.7
+cliente -down-> r4 : RD3.10
+cliente -down-> r5 : RD3.13
+cliente -down-> r6 : RD3.16
+
+r1 -down-> db : RD3.2
+r2 -down-> db : RD3.5
+r3 <-down- db : RD3.8
+r4 <-down- db : RD3.11
+r5 <-down- db : RD3.14
+r6 <-down- db : RD3.17
+
+@enduml

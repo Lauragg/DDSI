@@ -1,0 +1,29 @@
+@startuml
+
+storage "ConsultarPartidasJugador (RF1.4)" as r
+
+node " " as hex {
+
+    rectangle "Jugador" as j
+    rectangle "Partida" as p
+
+    cloud "rolea" as rel
+
+    rel =left= "N" j
+    rel =right= "N" p
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    j =down= dni
+    j =down= alias
+
+    interface "Identificador" as id #black
+    interface "Nombre" as nomb
+    p =down= id
+    p =down= nomb
+
+}
+
+hex =left= r
+
+@enduml

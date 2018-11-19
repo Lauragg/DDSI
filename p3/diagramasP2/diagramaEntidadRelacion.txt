@@ -1,0 +1,61 @@
+@startuml
+node "Diagrama Entidad Relación del sistema" as hex {
+
+    rectangle "Universo" as universo
+    rectangle "Partida" as partida
+    rectangle "Personaje" as personaje
+    rectangle "Jugador" as jugador
+
+    cloud "engloba" as engloba
+    cloud "participa" as participa
+    cloud "habita" as habita
+    cloud "maneja" as maneja
+    cloud "rolea" as rolea
+
+    maneja =right= "1" jugador
+    maneja =down= "N" personaje
+    rolea =left= "N" jugador
+    rolea =down= "N" partida
+    participa =left= "N" personaje
+    participa =right= "N" partida
+    habita =up= "N" personaje
+    habita =right= "1" universo
+    engloba =up= "N" partida
+    engloba =left= "1" universo
+
+    interface "Nombre" as nom #black
+    interface "Género" as gen #white
+    interface "Reglas" as rel #white
+
+    universo =down= nom
+    universo =down= gen
+    universo =down= rel
+
+    interface "Identificador" as id #black
+    interface "Nombre" as nom2 #white
+    interface "Log fechas" as log #white
+
+    partida =right= id
+    partida =down= nom2
+    partida =down= log
+
+    interface "Identificador" as id2 #black
+    interface "Nombre" as nom3
+    interface "Atributos" as atri
+    interface "Estado" as estado
+
+    personaje =left= id2
+    personaje =up= nom3
+    personaje =up= atri
+    personaje =up= estado
+
+    interface "DNI" as id3 #black
+    interface "Alias" as alias
+    interface "Correo" as correo
+
+    jugador =up= id3
+    jugador =up= alias
+    jugador =up= correo
+
+}
+@enduml

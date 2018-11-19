@@ -1,0 +1,21 @@
+@startuml
+storage "Activar/Desactivar un personaje RF(2.5)" as r
+node " " as hex {
+    rectangle "Personaje" as pj
+
+
+    interface "Identificador" as idpj #black
+    ' interface "Nombre" as nombpj
+    'interface "Atributos" as atri
+     interface "Estado" as estado
+    pj =up= idpj
+    ' pj =up= nombpj
+    ' pj =up= atri
+    pj =up= estado
+
+
+
+}
+
+hex =left= r
+@enduml

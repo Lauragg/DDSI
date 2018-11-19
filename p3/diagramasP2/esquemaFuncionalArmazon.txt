@@ -1,0 +1,38 @@
+@startuml
+
+storage "Subsistema de \njugadores" as sjugadores
+storage "Subsistema de \nuniversos y partidas" as suniversos
+storage "Subsistema de \npersonajes" as spersonajes
+rectangle "Cliente" as cliente
+rectangle "Administrador" as admin
+database "Base de datos" as db
+
+cliente --> suniversos
+cliente <- suniversos
+
+admin -> suniversos
+admin <- suniversos
+
+cliente -down-> sjugadores
+cliente <- sjugadores
+
+admin -> sjugadores
+admin <- sjugadores
+
+cliente -> spersonajes
+cliente <- spersonajes
+
+admin --> spersonajes
+admin <-- spersonajes
+
+suniversos -> db
+suniversos <-down- db
+
+sjugadores -> db
+sjugadores <-down- db
+
+spersonajes -> db
+spersonajes <-down- db
+
+
+@enduml

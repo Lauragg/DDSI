@@ -1,0 +1,43 @@
+@startuml
+
+storage "Nueva\nPartida 3.2" as r2
+
+node " " as b {
+
+    rectangle "Partida" as par2
+    rectangle "Universo" as uni2
+    rectangle "Personaje" as per2
+
+    cloud "participa" as part2
+    cloud "engloba" as eng2
+
+    par2 =right= "N" part2
+    part2 =right= "1" uni2
+
+    par2 =left= "N" eng2
+    eng2 =left= "N" per2
+
+    interface "Identificador" as id3 #black
+    interface "Nombre" as nom2 #white
+    interface "Log fechas" as log #white
+
+    par2 =down= id3
+    par2 =down= nom2
+    par2 =down= log
+
+    id3 -[hidden]right- nom2
+
+    interface "Identificador" as id4 #black
+
+    per2 =down= id4
+
+    interface "Nombre" as nom #black
+
+    uni2 =down= nom
+
+
+}
+
+b =left= r2
+
+@enduml

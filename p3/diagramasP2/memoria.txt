@@ -1,4 +1,4 @@
-# Memoria de la práctica 3
+# Memoria de la prácica 2
 
 ## Subsistemas realizados por cada componente
 
@@ -10,11 +10,9 @@ Miguel Lentisco Ballesteros - Subsistema de universos y partidas
 
 ## Diferencias respecto a la anterior entrega
 
-  - Corregida errata del diagrama Entidad Relación de la práctica 2: Cambiado
-  identificador en la tabla Jugador por DNI.
+Añadido el identificador de algunos elementos de nuestros subsistemas, con las modificaciones extras que esto conlleva. Un ejemplo de estas modificaciones y, la más importante, es la modificación que esto supone en los requisitos de datos de entrada.
 
-  - Añadida restricción semántica RS1.7 para que el correo sea único (no haya
-  dos jugadores con el mismo), y por tanto sea luego clave candidata.
+También, especificamos qué requisitos funcionales pueden ser utilizados únicamente por el administrador.
 
 ## Descripción del problema
 
@@ -372,8 +370,6 @@ Nota: el personaje recibe una lista a completar de atributos por parte del unive
 
   - **RS1.6** (**RF1.5**,**RD1.13**): Es necesario que el Alias esté ya asociado a un jugador.
 
-  - **RS1.7** (**RF1.1**,**RD1.1**): Es necesario que el correo no esté ya asociado a un jugador.
-
 
 ### Para el subsistema de personajes:
   - **RS2.1** (**RF2.1**,**RD2.1**): Es necesario que el nombres sea una cadena de caracteres no numéricos.
@@ -495,7 +491,6 @@ RS1.3 | RF1.1 | RD1.1
 RS1.4 | RF1.2 | RD1.4
 RS1.5 | RF1.4 | RD1.10
 RS1.6 | RF1.5 | RD1.13
-RS1.7 | RF1.1 | RD1.1
 RS2.1 | RF2.1 | RD2.1
 RS2.2 | RF2.1 | RD2.1
 RS2.3 | RF2.1 | RD2.1
@@ -514,63 +509,63 @@ En la realización de estos diagramas, debido a que en el programa utilizado no 
 
 ## Diagrama de Caja Negra
 
-![](diagramasP2/diagramaCajaNegra.png)
+![](diagramaCajaNegra.png)
 
 ## Diagrama Funcional Armazón
 
-![](diagramasP2/esquemaFuncionalArmazon.png)
+![](esquemaFuncionalArmazon.png)
 
 ## Diagramas funcionales de los subsistemas
 
-![](diagramasP2/DFJ.png)
+![](DFJ.png)
 
-![](diagramasP2/DFP.png)
+![](DFP.png)
 
-![](diagramasP2/DFUP.png)
+![](DFUP.png)
 
 ## Esquemas externos del subsistema de Jugadores
 
-![](diagramasP2/DEJugadores/EEJ1.png)
+![](DEJugadores/EEJ1.png)
 
-![](diagramasP2/DEJugadores/EEJ2.png)
+![](DEJugadores/EEJ2.png)
 
-![](diagramasP2/DEJugadores/EEJ3.png)
+![](DEJugadores/EEJ3.png)
 
-![](diagramasP2/DEJugadores/EEJ4.png)
+![](DEJugadores/EEJ4.png)
 
-![](diagramasP2/DEJugadores/EEJ5.png)
+![](DEJugadores/EEJ5.png)
 
-![](diagramasP2/DEJugadores/EEJ.png)
+![](DEJugadores/EEJ.png)
 
 ## Esquemas externos del subsistema de Personajes
 
-![](diagramasP2/DEPersonajes/EEP1.png)
+![](DEPersonajes/EEP1.png)
 
-![](diagramasP2/DEPersonajes/EEP2.png)
+![](DEPersonajes/EEP2.png)
 
-![](diagramasP2/DEPersonajes/EEP3.png)
+![](DEPersonajes/EEP3.png)
 
-![](diagramasP2/DEPersonajes/EEP4.png)
+![](DEPersonajes/EEP4.png)
 
-![](diagramasP2/DEPersonajes/EEP5.png)
+![](DEPersonajes/EEP5.png)
 
-![](diagramasP2/DEPersonajes/EEP.png)
+![](DEPersonajes/EEP.png)
 
 ## Esquemas externos del subsistema de Universos y Partidas
 
-![](diagramasP2/DEUniversosPartidas/DEUP1.png)
+![](DEUniversosPartidas/DEUP1.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP2.png)
+![](DEUniversosPartidas/DEUP2.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP3.png)
+![](DEUniversosPartidas/DEUP3.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP4.png)
+![](DEUniversosPartidas/DEUP4.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP5.png)
+![](DEUniversosPartidas/DEUP5.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP6.png)
+![](DEUniversosPartidas/DEUP6.png)
 
-![](diagramasP2/DEUniversosPartidas/DEUP.png)
+![](DEUniversosPartidas/DEUP.png)
 
 ## Esquema entidad-relación del sistema completo
 
@@ -578,4 +573,4 @@ Al tener unicamente un contenedor su diagrama externo es exactamente el mismo
 que el diagrama externo del sistema completo. Esto es, el diagrama
 entidad-relación.
 
-![](diagramasP2/diagramaEntidadRelacion.png)
+![](diagramaEntidadRelacion.png)

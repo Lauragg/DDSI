@@ -1,0 +1,36 @@
+@startuml
+
+node "Subsistema de jugadores" as hex {
+
+    rectangle "Jugador" as j
+    rectangle "Personaje" as pj
+    rectangle "Partida" as p
+
+    cloud "maneja" as maneja
+    cloud "rolea" as rolea
+
+    maneja =right= "1" j
+    maneja =down= "N" pj
+    rolea =left= "N" j
+    rolea =down= "N" p
+
+    interface "DNI" as dni #black
+    interface "Alias" as alias
+    interface "Correo" as correo
+    j =up= dni
+    j =up= alias
+    j =up= correo
+
+    interface "Identificador" as idpj #black
+    interface "Nombre" as nombpj
+    pj =down= idpj
+    pj =down= nombpj
+
+    interface "Identificador" as idp #black
+    interface "Nombre" as nombp
+    p =down= idp
+    p =down= nombp
+
+}
+
+@enduml

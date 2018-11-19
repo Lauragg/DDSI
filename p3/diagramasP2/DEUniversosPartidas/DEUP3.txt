@@ -1,0 +1,17 @@
+@startuml
+
+storage "Consultar listado\n partidas 3.3" as r
+
+node " " as hex {
+
+    rectangle "Partida" as par
+
+    interface "Identificador" as id #black
+
+    par =down= id
+
+}
+
+hex =left= r
+
+@enduml

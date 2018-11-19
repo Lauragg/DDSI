@@ -1,0 +1,27 @@
+@startuml
+
+storage "Consultar listado partidas \nde un universo 3.6" as r
+
+node " " as hex {
+
+    rectangle "Universo" as uni
+    rectangle "Partida" as par
+
+    cloud "engloba" as eng
+
+    par =right= "N" eng
+    eng =right= "1" uni
+
+    interface "Nombre" as nom #black
+
+    uni =down= nom
+
+    interface "Identificador" as id #black
+
+    par =down= id
+
+}
+
+hex =left= r
+
+@enduml
