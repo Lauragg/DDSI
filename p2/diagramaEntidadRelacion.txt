@@ -39,7 +39,6 @@ node "Diagrama Entidad Relación del sistema" as hex {
     partida =down= nom2
     partida =down= log
 
-
     interface "Identificador" as id2 #black
     interface "Nombre" as nom3
     interface "Atributos" as atri
@@ -50,7 +49,7 @@ node "Diagrama Entidad Relación del sistema" as hex {
     personaje =up= atri
     personaje =up= estado
 
-    interface "Identificador" as id3 #black
+    interface "DNI" as id3 #black
     interface "Alias" as alias
     interface "Correo" as correo
 
