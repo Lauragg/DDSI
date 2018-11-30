@@ -508,19 +508,20 @@ RS3.4 | RF3.2 | RD3.4
 RS3.5 | RF3.5 | RD3.13
 RS3.6 | RF3.6 | RD3.16
 
+## Diagramas de Caja Negra, Funcional Armazón, Subsistemas,  Esquemas Externos y E/R.
 
-## Detalles a tener en cuenta:
+### Detalles a tener en cuenta:
 En la realización de estos diagramas, debido a que en el programa utilizado no existían dichos iconos, hemos reemplazado algunos. En concreto, los contenedores son representados con bases de datos, las relaciones están representadas con nubes en lugar de rombos y el hexágono que contiene a todo en los diagramas externos ha sido sustituido por un nodo capaz de albergarlo todo.
 
-## Diagrama de Caja Negra
+### Diagrama de Caja Negra
 
 ![](diagramasP2/diagramaCajaNegra.png)
 
-## Diagrama Funcional Armazón
+### Diagrama Funcional Armazón
 
 ![](diagramasP2/esquemaFuncionalArmazon.png)
 
-## Diagramas funcionales de los subsistemas
+### Diagramas funcionales de los subsistemas
 
 ![](diagramasP2/DFJ.png)
 
@@ -528,7 +529,7 @@ En la realización de estos diagramas, debido a que en el programa utilizado no 
 
 ![](diagramasP2/DFUP.png)
 
-## Esquemas externos del subsistema de Jugadores
+### Esquemas externos del subsistema de Jugadores
 
 ![](diagramasP2/DEJugadores/EEJ1.png)
 
@@ -542,7 +543,7 @@ En la realización de estos diagramas, debido a que en el programa utilizado no 
 
 ![](diagramasP2/DEJugadores/EEJ.png)
 
-## Esquemas externos del subsistema de Personajes
+### Esquemas externos del subsistema de Personajes
 
 ![](diagramasP2/DEPersonajes/EEP1.png)
 
@@ -556,7 +557,7 @@ En la realización de estos diagramas, debido a que en el programa utilizado no 
 
 ![](diagramasP2/DEPersonajes/EEP.png)
 
-## Esquemas externos del subsistema de Universos y Partidas
+### Esquemas externos del subsistema de Universos y Partidas
 
 ![](diagramasP2/DEUniversosPartidas/DEUP1.png)
 
@@ -572,10 +573,60 @@ En la realización de estos diagramas, debido a que en el programa utilizado no 
 
 ![](diagramasP2/DEUniversosPartidas/DEUP.png)
 
-## Esquema entidad-relación del sistema completo
+### Esquema entidad-relación del sistema completo
 
 Al tener unicamente un contenedor su diagrama externo es exactamente el mismo
 que el diagrama externo del sistema completo. Esto es, el diagrama
 entidad-relación.
 
 ![](diagramasP2/diagramaEntidadRelacion.png)
+
+## Diseño
+
+### Diseño Lógico
+
+![](diagramasP3/PasoATablas.png)
+
+### Diseño Físico
+
+~~~
+CREATE TABLE Universo (
+  nombre    VARCHAR2(32) PRIMARY KEY,
+  genero    VARCHAR2(32),
+  reglas    VARCHAR2(32)
+);
+
+CREATE TABLE Jugador (
+  dni             VARCHAR2(9) PRIMARY KEY,
+  alias           VARCHAR2(32),
+  correo          VARCHAR2(32) UNIQUE
+);
+
+CREATE TABLE Personaje (
+  identificador   NUMBER PRIMARY KEY,
+  nombre          VARCHAR2(32) NOT NULL,
+  atributos       VARCHAR2(32),
+  estado          BIT,
+  jug_id          NUMBER FOREIGN KEY REFERENCES Jugador(identificador)
+);
+
+CREATE TABLE Partida (
+  identificador   NUMBER PRIMARY KEY,
+  nombre          VARCHAR2(32) NOT NULL,
+  log_fechas      VARCHAR2(32),
+  uni_nombre      VARCHAR2(32) FOREIGN KEY REFERENCES Universo(nombre)
+);
+
+CREATE TABLE Rolea (
+  jug_id    NUMBER FOREIGN KEY REFERENCES Jugador(identificador),
+  par_id    NUMBER FOREIGN KEY REFERENCES Partida(identificador),
+  CONSTRAINT PK_Rolea PRIMARY KEY (jug_id, par_id)
+);
+
+CREATE TABLE Participa (
+  per_id    NUMBER FOREIGN KEY REFERENCES Personaje(identificador),
+  par_id    NUMBER FOREIGN KEY REFERENCES Partida(identificador),
+  CONSTRAINT PK_Participa PRIMARY KEY (per_id, par_id)
+);
+
+~~~
