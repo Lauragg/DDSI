@@ -16,6 +16,7 @@ CREATE TABLE Personaje (
   atributos       VARCHAR2(32),
   estado          BIT,
   jug_id          NUMBER FOREIGN KEY REFERENCES Jugador(identificador)
+  uni_id          VARCHAR2(32) FOREIGN KEY REFERENCES Universo(nombre)
 );
 
 CREATE TABLE Partida (
