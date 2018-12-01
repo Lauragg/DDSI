@@ -1,0 +1,20 @@
+CREATE OR REPLACE TRIGGER checkUniversoNombre
+BEFORE INSERT OR UPDATE ON Universo
+
+DECLARE
+  nombreYaExistente EXCEPTION;
+
+BEGIN
+  IF EXISTS (SELECT * FROM Universo as uni WHERE uni.nombre = :new.nombre) THEN
+    RAISE nombreYaExistente;
+  END IF;
+
+  EXCEPTION
+  WHEN nombreYaExistente THEN
+    DBMS_OUTPUT.PUT_LINE("Error: ya existe un universo con ese nombre.");
+    RAISE DUP_VAL_ON_INDEX;
+  WHEN OTHERS THEN
+    DMBS_OUTPUT.PUT_LINE("Error de algún tipo");
+    RAISE;
+  END;
+END;
