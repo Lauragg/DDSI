@@ -630,3 +630,34 @@ CREATE TABLE Participa (
 );
 
 ~~~
+
+### Disparadores
+
+Disparador hecho por Jose, asociado a la restricción semántica **RS1.2**,
+comprueba que el DNI no esté asociado a otro jugador.
+
+~~~
+CREATE TRIGGER dni_valido
+BEFORE INSERT OR UPDATE ON jugador
+DECLARE
+
+  dni_no_valido EXCEPTION;
+  PRAGMA EXCEPTION_INIT (dni_no_valido, -1);
+
+BEGIN
+  IF EXISTS (SELECT *
+           FROM jugador AS j
+           WHERE j.dni = :new.dni
+          )
+  THEN
+    RAISE dni_no_valido;
+  END IF;
+
+  EXCEPTION
+    WHEN dni_no_valido THEN
+      DBMS_OUTPUT.PUT_LINE("Ya hay un cliente con ese DNI en el sistema");
+      RAISE DUP_VAL_ON_INDEX;
+  END;
+
+END;
+~~~

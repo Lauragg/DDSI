@@ -1,4 +1,4 @@
-CREATE TRIGGER DNI
+CREATE TRIGGER dni_valido
 BEFORE INSERT OR UPDATE ON jugador
 DECLARE
 
@@ -10,9 +10,9 @@ BEGIN
            FROM jugador AS j
            WHERE j.dni = :new.dni
           )
-  BEGIN
+  THEN
     RAISE dni_no_valido;
-  END;
+  END IF;
 
   EXCEPTION
     WHEN dni_no_valido THEN
