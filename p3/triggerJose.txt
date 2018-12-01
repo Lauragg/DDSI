@@ -1,0 +1,23 @@
+CREATE TRIGGER DNI
+BEFORE INSERT OR UPDATE ON jugador
+DECLARE
+
+  dni_no_valido EXCEPTION;
+  PRAGMA EXCEPTION_INIT (dni_no_valido, -1);
+
+BEGIN
+  IF EXISTS (SELECT *
+           FROM jugador AS j
+           WHERE j.dni = :new.dni
+          )
+  BEGIN
+    RAISE dni_no_valido;
+  END;
+
+  EXCEPTION
+    WHEN dni_no_valido THEN
+      DBMS_OUTPUT.PUT_LINE("Ya hay un cliente con ese DNI en el sistema");
+      RAISE DUP_VAL_ON_INDEX;
+  END;
+
+END;
