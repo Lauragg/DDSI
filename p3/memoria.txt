@@ -695,8 +695,7 @@ BEGIN
 END;
 ~~~
 
-Disparador hecho por Miguel, asociado a la restricción semántica **RS3.2**,
-comprueba que el nombre del universo no este ya registrado.
+Disparador hecho por Miguel, asociado a la restricción semántica **RS3.2**, comprueba que el nombre del universo no este ya registrado.
 
 ~~~
 CREATE OR REPLACE TRIGGER checkUniversoNombre

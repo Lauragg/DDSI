@@ -1,0 +1,20 @@
+CREATE OR REPLACE TRIGGER ComprobarExistenciaUniverso
+BEFORE INSERT OR UPDATE ON Personaje
+
+DECLARE
+  nombreNoExistente EXCEPTION;
+
+BEGIN
+  IF NOT EXISTS (SELECT *
+              FROM Universo AS uni
+              WHERE uni.nombre = :new.uni_id)
+  THEN
+    RAISE nombreNoExistente;
+  END IF;
+
+  EXCEPTION
+  WHEN nombreNoExistente THEN
+    DBMS_OUTPUT.PUT_LINE("Error: No existe dicho universo.");
+    RAISE DUP_VAL_ON_INDEX;
+  END;
+END;
