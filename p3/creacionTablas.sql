@@ -15,7 +15,7 @@ CREATE TABLE Personaje (
   nombre          VARCHAR2(32) NOT NULL,
   atributos       VARCHAR2(32),
   estado          BIT,
-  jug_id          NUMBER FOREIGN KEY REFERENCES Jugador(identificador)
+  jug_dni         VARCHAR2(9) FOREIGN KEY REFERENCES Jugador(dni)
   uni_id          VARCHAR2(32) FOREIGN KEY REFERENCES Universo(nombre)
 );
 
