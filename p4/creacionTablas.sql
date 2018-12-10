@@ -21,7 +21,7 @@ CREATE TABLE Jugador (
 );
 
 CREATE TABLE Personaje (
-  identificador   INT,
+  identificador   INT AUTO_INCREMENT,
   nombre          VARCHAR(32) NOT NULL,
   atributos       VARCHAR(32),
   estado          BIT,
@@ -33,7 +33,7 @@ CREATE TABLE Personaje (
 );
 
 CREATE TABLE Partida (
-  identificador   INT,
+  identificador   INT AUTO_INCREMENT,
   nombre          VARCHAR(32) NOT NULL,
   log_fechas      VARCHAR(32),
   uni_nombre      VARCHAR(32),
