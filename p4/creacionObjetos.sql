@@ -1,3 +1,5 @@
+USE ddsi;
+
 INSERT INTO Universo VALUES ("Universo 1", "SciFi", "reglas1.txt");
 INSERT INTO Universo VALUES ("Universo 2", "Fantasía", "reglas2.txt");
 INSERT INTO Universo VALUES ("Universo 3", "Medieval", "reglas3.txt");
