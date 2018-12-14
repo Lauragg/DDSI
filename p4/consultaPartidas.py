@@ -139,41 +139,48 @@ class Aplicacion(object):
     def query_jugador_2(self):
         # Lee el texto de la entrada
         if self.jugador_elegido_input.get() == "":
-            messagebox.showinfo("Error", "No ha introducido ningún nombre")
+            #messagebox.showinfo("Error", "No ha introducido ningún nombre")
+            jugador_elegido = "Yellowmellow"
         else:
             jugador_elegido = self.jugador_elegido_input.get()
 
-            # Buscamos al jugador en el sistema
-            self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + jugador_elegido + "\';"
-            conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
-            with conexion:
-                cursor = conexion.cursor()
+        # Buscamos al jugador en el sistema
+        self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + jugador_elegido + "\';"
+        conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
+        with conexion:
+            cursor = conexion.cursor()
+            cursor.execute(self.peticion)
+            rows = cursor.fetchall()
+
+            if len(rows) == 0:
+                messagebox.showinfo("Error", "No hay ningún jugador con ese alias en el sistema")
+            else:
+                # Obtenemos a los personajes asociados al jugador
+                self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE jug_dni=\'" + rows[0][0] + "\';"
                 cursor.execute(self.peticion)
                 rows = cursor.fetchall()
 
-                if len(rows) == 0:
-                    messagebox.showinfo("Error", "No hay ningún jugador con ese alias en el sistema")
-                else:
-                    # Obtenemos a los personajes asociados al jugador
-                    self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE dni=\'" + rows[0][0] + "\';"
-                    cursor.execute(self.peticion)
-                    rows = cursor.fetchall()
+                # Almacenamos la info en un DataFrame
+                self.df = pd.DataFrame()
+                self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
+                self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
+                self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
+                self.df['estado'] = [rows[i][3] for i in range(len(rows))]
 
-                    # Almacenamos la info en un DataFrame
-                    self.df = pd.DataFrame()
-                    self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
-                    self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
-                    self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
-                    self.df['estado'] = [rows[i][3] for i in range(len(rows))]
+                # Preparamos el path para guardar la información
+                self.path_defecto = "./data/personajesDelJugador.csv"
 
-                    # Preparamos el path para guardar la información
-                    self.path_defecto = "./data/personajesDelJugador.csv"
+        if self.df.empty:
+            self.ErrorNoDatos()
+        else:
+            self.PeticionAcabada()
+        self.ventana_jugador.destroy()
 
     def guardar_csv(self):
         if self.peticion_realizada:
             # Si no hay datos
             if self.df.empty:
-                messagebox.showinfo("Error", "No hay datos")
+                 messagebox.showinfo("Error", "No hay datos")
             else:
                 if self.texto_guardado.get() == "":
                     # Path por defecto
