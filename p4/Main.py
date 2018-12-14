@@ -17,6 +17,8 @@ class Aplicacion(object):
         self.pswd = pswd
         self.db = db
 
+        self.jugador_elegido = ""
+        self.df = pd.DataFrame()
         self.peticion_realizada = False
 
     	 # Ponemos el título a la ventana
@@ -109,7 +111,6 @@ class Aplicacion(object):
             rows = cursor.fetchall()
 
             # Recuperamos la informacion
-            self.df = pd.DataFrame()
             self.df['nombre'] = [rows[i][0] for i in range(len(rows))]
             self.df['genero'] = [rows[i][1] for i in range(len(rows))]
             self.df['reglas'] = [rows[i][2] for i in range(len(rows))]
@@ -124,12 +125,12 @@ class Aplicacion(object):
 
     def query_jugador(self):
         self.ventana_jugador = Tk()
-        self.ventana_jugador.wm_title("Nombre")
+        self.ventana_jugador.wm_title("Alias")
 
         # Entrada para el jugador
         self.jugador_elegido_input = StringVar()
-        entrada_jugador = Entry(self.ventana_jugador, textvariable = self.jugador_elegido_input)
-        entrada_jugador.grid(row = 0, column = 0, columnspan = 2)
+        self.entrada_nombre_jugador = Entry(self.ventana_jugador, textvariable = self.jugador_elegido_input)
+        self.entrada_nombre_jugador.grid(row = 0, column = 0, columnspan = 2)
 
         # Botón para el guardado
         self.boton_entrada = Button(self.ventana_jugador, text="Enviar")
@@ -139,13 +140,14 @@ class Aplicacion(object):
     def query_jugador_2(self):
         # Lee el texto de la entrada
         if self.jugador_elegido_input.get() == "":
-            #messagebox.showinfo("Error", "No ha introducido ningún nombre")
-            jugador_elegido = "Yellowmellow"
+            messagebox.showinfo("Error", "No ha introducido ningún nombre")
+            self.jugador_elegido = "Yellowmellow"
         else:
-            jugador_elegido = self.jugador_elegido_input.get()
+            self.jugador_elegido = self.jugador_elegido_input.get()
 
         # Buscamos al jugador en el sistema
-        self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + jugador_elegido + "\';"
+        self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + self.jugador_elegido + "\';"
+        print("Peticion: " + self.peticion)
         conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
         with conexion:
             cursor = conexion.cursor()
@@ -157,11 +159,11 @@ class Aplicacion(object):
             else:
                 # Obtenemos a los personajes asociados al jugador
                 self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE jug_dni=\'" + rows[0][0] + "\';"
+                print("Peticion: " + self.peticion)
                 cursor.execute(self.peticion)
                 rows = cursor.fetchall()
 
                 # Almacenamos la info en un DataFrame
-                self.df = pd.DataFrame()
                 self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
                 self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
                 self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
