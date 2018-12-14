@@ -18,23 +18,34 @@ class Aplicacion(object):
         self.db = db
 
         self.peticion_realizada = False
-        self.path_defecto = "./data/universosData.csv"
 
     	 # Ponemos el título a la ventana
-        ventana.wm_title("Ventana BaseDatos")
+        ventana.wm_title("Super Sistema de Información")
 
         # Fila actual a 0
         self.fila_actual = 0
 
         ''' Panel de consulta '''
-        # Consultar universos etiqueta
+
+        # Etiqueta ConsultarUniversos
         self.universos_etiqueta = Label(ventana, text = "Consultar universos:")
         self.universos_etiqueta.grid(row = self.fila_actual, column = 0, columnspan = 2)
         self.fila_actual += 1
 
-        #Enviar petición botón
+        # Botón ConsultarUniversos
         self.peticion_boton = Button(ventana, text = "Mandar petición")
-        self.peticion_boton.configure(command = self.mandar_query)
+        self.peticion_boton.configure(command = self.query_universos)
+        self.peticion_boton.grid(row = self.fila_actual, column = 0, columnspan = 2)
+        self.fila_actual += 1
+
+        # Etiqueta ConsultarPersonajesJugador
+        self.universos_etiqueta = Label(ventana, text = "Consultar personajes de un jugador:")
+        self.universos_etiqueta.grid(row = self.fila_actual, column = 0, columnspan = 2)
+        self.fila_actual += 1
+
+        # Botón ConsultarPersonajesJugador
+        self.peticion_boton = Button(ventana, text = "Elegir jugador")
+        self.peticion_boton.configure(command = self.query_jugador)
         self.peticion_boton.grid(row = self.fila_actual, column = 0, columnspan = 2)
         self.fila_actual += 1
 
@@ -73,8 +84,17 @@ class Aplicacion(object):
         self.etiqueta_vacia.grid(row = self.fila_actual, column = 0, columnspan = 2)
         self.fila_actual += 1
 
-    # Manda la petición a la base de datos
-    def mandar_query(self):
+    # Si no ha habido datos
+    def ErrorNoDatos(self):
+        self.estado_peticion.configure(text = "Sin datos")
+
+    # Avisa de que la petición ha acabado
+    def PeticionAcabada(self):
+        self.estado_peticion.configure(text = "Acabado")
+        self.peticion_realizada = True
+
+    # Manda la petición de ConsultarUniversos a la base de datos
+    def query_universos(self):
         # La petición a la base de datos
         self.peticion = "SELECT * FROM Universo;"
         # Conexión a la base de datos (ip, usuario, contraseña, nombre baseDatos)
@@ -94,13 +114,60 @@ class Aplicacion(object):
             self.df['genero'] = [rows[i][1] for i in range(len(rows))]
             self.df['reglas'] = [rows[i][2] for i in range(len(rows))]
 
+            # Preparamos el path para guardar la información
+            self.path_defecto = "./data/universosData.csv"
+
         if self.df.empty:
-            #Si no ha habido datos
-            self.estado_peticion.configure(text = "Sin datos")
+            self.ErrorNoDatos()
         else:
-            # Avisa de que la petición ha acabado
-            self.estado_peticion.configure(text = "Acabado")
-        self.peticion_realizada = True
+            self.PeticionAcabada()
+
+    def query_jugador(self):
+        self.ventana_jugador = Tk()
+        self.ventana_jugador.wm_title("Nombre")
+
+        # Entrada para el jugador
+        self.jugador_elegido_input = StringVar()
+        entrada_jugador = Entry(self.ventana_jugador, textvariable = self.jugador_elegido_input)
+        entrada_jugador.grid(row = 0, column = 0, columnspan = 2)
+
+        # Botón para el guardado
+        self.boton_entrada = Button(self.ventana_jugador, text="Enviar")
+        self.boton_entrada.configure(command = self.query_jugador_2)
+        self.boton_entrada.grid(row = 1, column = 0, columnspan = 2)
+
+    def query_jugador_2(self):
+        # Lee el texto de la entrada
+        if self.jugador_elegido_input.get() == "":
+            messagebox.showinfo("Error", "No ha introducido ningún nombre")
+        else:
+            jugador_elegido = self.jugador_elegido_input.get()
+
+            # Buscamos al jugador en el sistema
+            self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + jugador_elegido + "\';"
+            conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
+            with conexion:
+                cursor = conexion.cursor()
+                cursor.execute(self.peticion)
+                rows = cursor.fetchall()
+
+                if len(rows) == 0:
+                    messagebox.showinfo("Error", "No hay ningún jugador con ese alias en el sistema")
+                else:
+                    # Obtenemos a los personajes asociados al jugador
+                    self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE dni=\'" + rows[0][0] + "\';"
+                    cursor.execute(self.peticion)
+                    rows = cursor.fetchall()
+
+                    # Almacenamos la info en un DataFrame
+                    self.df = pd.DataFrame()
+                    self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
+                    self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
+                    self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
+                    self.df['estado'] = [rows[i][3] for i in range(len(rows))]
+
+                    # Preparamos el path para guardar la información
+                    self.path_defecto = "./data/personajesDelJugador.csv"
 
     def guardar_csv(self):
         if self.peticion_realizada:

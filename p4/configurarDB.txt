@@ -1,0 +1,20 @@
+# Instalar paquetes
+
+Instalamos los paquetes mysql-server y mysql-client
+
+# Cambiar la contraseña de root
+
+https://support.rackspace.com/how-to/mysql-resetting-a-lost-mysql-root-password/
+
+# Creación de la BBDD
+
+Una vez instalado mysql creamos las tablas y añadimos algunos objetos:
+
+mysql -u root -p < creacionTablas.sql
+mysql -u root -p < creacionObjetos.sql
+
+# Programa
+
+Lanzamos el programa mediante:
+
+python3 consultaPartidas.py localhost root CONTRASEÑA ddsi
