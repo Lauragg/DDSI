@@ -140,8 +140,7 @@ class Aplicacion(object):
         self.ventana_jugador.wm_title("Alias")
 
         # Entrada para el jugador
-        self.jugador_elegido_input = StringVar()
-        self.entrada_nombre_jugador = Entry(self.ventana_jugador, textvariable = self.jugador_elegido_input)
+        self.entrada_nombre_jugador = Entry(self.ventana_jugador)
         self.entrada_nombre_jugador.grid(row = 0, column = 0, columnspan = 2)
 
         # Botón para el guardado
@@ -150,39 +149,40 @@ class Aplicacion(object):
         self.boton_entrada.grid(row = 1, column = 0, columnspan = 2)
 
     def query_jugador_2(self):
+        self.df.drop(self.df.index)
         # Lee el texto de la entrada
-        if self.jugador_elegido_input.get() == "":
+        if self.entrada_nombre_jugador.get() == "":
             messagebox.showinfo("Error", "No ha introducido ningún nombre")
             self.jugador_elegido = "Yellowmellow"
         else:
-            self.jugador_elegido = self.jugador_elegido_input.get()
+            self.jugador_elegido = self.entrada_nombre_jugador.get()
 
-        # Buscamos al jugador en el sistema
-        self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + self.jugador_elegido + "\';"
-        print("Peticion: " + self.peticion)
-        conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
-        with conexion:
-            cursor = conexion.cursor()
-            cursor.execute(self.peticion)
-            rows = cursor.fetchall()
-
-            if len(rows) == 0:
-                messagebox.showinfo("Error", "No hay ningún jugador con ese alias en el sistema")
-            else:
-                # Obtenemos a los personajes asociados al jugador
-                self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE jug_dni=\'" + rows[0][0] + "\';"
-                print("Peticion: " + self.peticion)
+            # Buscamos al jugador en el sistema
+            self.peticion = "SELECT dni FROM Jugador WHERE alias=\'" + self.jugador_elegido + "\';"
+            print("Peticion: " + self.peticion)
+            conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
+            with conexion:
+                cursor = conexion.cursor()
                 cursor.execute(self.peticion)
                 rows = cursor.fetchall()
 
-                # Almacenamos la info en un DataFrame
-                self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
-                self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
-                self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
-                self.df['estado'] = [rows[i][3] for i in range(len(rows))]
+                if len(rows) == 0:
+                    messagebox.showinfo("Error", "No hay ningún jugador con ese alias en el sistema")
+                else:
+                    # Obtenemos a los personajes asociados al jugador
+                    self.peticion = "SELECT identificador,nombre,atributos,estado FROM Personaje WHERE jug_dni=\'" + rows[0][0] + "\';"
+                    print("Peticion: " + self.peticion)
+                    cursor.execute(self.peticion)
+                    rows = cursor.fetchall()
 
-                # Preparamos el path para guardar la información
-                self.path_defecto = "./data/personajesDelJugador.csv"
+                    # Almacenamos la info en un DataFrame
+                    self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
+                    self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
+                    self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
+                    self.df['estado'] = [rows[i][3] for i in range(len(rows))]
+
+                    # Preparamos el path para guardar la información
+                    self.path_defecto = "./data/personajesDelJugador.csv"
 
         if self.df.empty:
             self.ErrorNoDatos()

@@ -1,2 +1,3 @@
 ,identificador,nombre,atributos,estado
-0,6,Yel1ow,Sigilo,b'\x01'
+0,4,Rub1us,Alquimia,b'\x00'
+1,5,Rubi2s,Arquería,b'\x00'
