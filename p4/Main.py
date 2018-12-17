@@ -114,6 +114,7 @@ class Aplicacion(object):
         print("Peticion: " + self.peticion)
         self.cursor.execute(self.peticion)
 
+
     # Manda la petición de ConsultarUniversos a la base de datos
     def query_universos(self):
         # La petición a la base de datos
@@ -123,9 +124,9 @@ class Aplicacion(object):
 
         # Recuperamos la informacion
         self.df.drop(self.df.index, inplace=True)
-        self.df['nombre'] = [rows[i][0] for i in range(len(rows))]
-        self.df['genero'] = [rows[i][1] for i in range(len(rows))]
-        self.df['reglas'] = [rows[i][2] for i in range(len(rows))]
+        atributos=['nombre','genero','reglas']
+        for i in range(len(atributos)):
+            self.df[atributos[i]] = [rows[j][i] for j in range(len(rows))]
 
         # Preparamos el path para guardar la información
         self.path_defecto = "./data/universosData.csv"
@@ -149,6 +150,9 @@ class Aplicacion(object):
         self.boton_entrada.grid(row = 1, column = 0, columnspan = 2)
 
     def query_jugador_2(self):
+        #Limpiamos el dataframe antes de comenzar la búsqueda de datos
+        self.df.drop(self.df.index, inplace=True)
+
         # Lee el texto de la entrada
         if self.entrada_nombre_jugador.get() == "":
             messagebox.showinfo("Error", "No ha introducido ningún nombre")
@@ -169,11 +173,9 @@ class Aplicacion(object):
                 rows = self.cursor.fetchall()
 
                 # Almacenamos la info en un DataFrame
-                self.df.drop(self.df.index, inplace=True)
-                self.df['identificador'] = [rows[i][0] for i in range(len(rows))]
-                self.df['nombre'] = [rows[i][1] for i in range(len(rows))]
-                self.df['atributos'] = [rows[i][2] for i in range(len(rows))]
-                self.df['estado'] = [rows[i][3] for i in range(len(rows))]
+                atributos=['identificador','nombre','atributos','estado']
+                for i in range(len(atributos)):
+                    self.df[atributos[i]] = [rows[j][i] for j in range(len(rows))]
 
         # Preparamos el path para guardar la información
         self.path_defecto = "./data/personajesDelJugador.csv"
@@ -192,7 +194,6 @@ class Aplicacion(object):
         self.entrada_personaje = Entry(self.ventana_personaje)
         self.entrada_personaje.grid(row = 0,column = 0, columnspan = 2)
 
-        #print("Entrada: "+self.entrada_personaje.get()+"\nPersonaje: "+self.personaje_buscado)
 
         #Botón para el guardado
         self.boton_personaje = Button(self.ventana_personaje, text="Enviar")
@@ -200,49 +201,48 @@ class Aplicacion(object):
         self.boton_personaje.grid(row = 1, column = 0, columnspan = 2)
 
     def query_personaje_2(self):
+        #Limpiamos el dataframe antes de comenzar la búsqueda de datos.
+        self.df.drop(self.df.index, inplace=True)
         self.personaje_buscado = self.entrada_personaje.get()
         print("Entrada: "+self.entrada_personaje.get()+"\nPersonaje: "+self.personaje_buscado)
         #Lee el texto de la entrada
         if self.personaje_buscado == "":
             messagebox.showinfo("Error", "No ha introducido ningún nombre de personaje")
-            self.personaje_buscado= "W1lly"
 
-        #Buscamos al personaje en el sistema.
-        self.peticion= "SELECT identificador FROM Personaje WHERE nombre=\'"+self.personaje_buscado+"\';"
-        self.RealizarPeticion()
-        rows = self.cursor.fetchall()
-
-        if len(rows) == 0:
-            messagebox.showinfo("Error", "No hay ningún personaje con ese nombre")
         else:
-            #Obtenemos las partidas asociadas a ese personaje
-            self.peticion= "SELECT par_id FROM Participa WHERE per_id=\'"+str(rows[0][0])+"\';"
+            #Buscamos al personaje en el sistema.
+            self.peticion= "SELECT identificador FROM Personaje WHERE nombre=\'"+self.personaje_buscado+"\';"
             self.RealizarPeticion()
             rows = self.cursor.fetchall()
+
             if len(rows) == 0:
-                messagebox.showinfo("Error", "El personaje no tiene ninguna partida asociada")
+                messagebox.showinfo("Error", "No hay ningún personaje con ese nombre")
             else:
-                self.peticion= "SELECT * FROM Partida WHERE identificador=\'"+str(rows[0][0])+"\';"
-                print("Peticion:"+self.peticion)
-                self.cursor.execute(self.peticion)
+                #Obtenemos las partidas asociadas a ese personaje
+                self.peticion= "SELECT par_id FROM Participa WHERE per_id=\'"+str(rows[0][0])+"\';"
+                self.RealizarPeticion()
                 rows = self.cursor.fetchall()
-                if len(rows)==0:
-                    messagebox.showinfo("Error", "No hay ningún universo con ese identificador")
+                if len(rows) == 0:
+                    messagebox.showinfo("Error", "El personaje no tiene ninguna partida asociada")
                 else:
-                    # Almacenamos la info en un DataFrame
-                    self.df.drop(self.df.index, inplace=True)
-                    self.df['identificador']=[rows[i][0] for i in range(len(rows))]
-                    self.df['nombre']=[rows[i][1] for i in range(len(rows))]
-                    self.df['log_fechas']=[rows[i][2] for i in range(len(rows))]
-                    self.df['uni_nombre']=[rows[i][3] for i in range(len(rows))]
+                    self.peticion= "SELECT * FROM Partida WHERE identificador=\'"+str(rows[0][0])+"\';"
+                    self.RealizarPeticion()
+                    rows = self.cursor.fetchall()
+                    if len(rows)==0:
+                        messagebox.showinfo("Error", "No hay ningún universo con ese identificador")
+                    else:
+                        # Almacenamos la info en un DataFrame
+                        atributos=['identificador','nombre','log_fechas','uni_nombre']
+                        for i in range(len(atributos)):
+                            self.df[atributos[i]] = [rows[j][i] for j in range(len(rows))]
 
-                    self.path_defecto="./data/ConsultarPartidasPersonaje.csv"
+                        self.path_defecto="./data/ConsultarPartidasPersonaje.csv"
 
-        if self.df.empty:
-            self.ErrorNoDatos()
-        else:
-            self.PeticionAcabada()
-        self.ventana_personaje.destroy()
+            if self.df.empty:
+                self.ErrorNoDatos()
+            else:
+                self.PeticionAcabada()
+            self.ventana_personaje.destroy()
 
     def guardar_csv(self):
         if self.peticion_realizada:
