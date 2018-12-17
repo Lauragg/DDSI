@@ -190,8 +190,6 @@ class Aplicacion(object):
             self.PeticionAcabada()
         self.ventana_jugador.destroy()
 
-
-
     def query_personaje(self):
         self.ventana_personaje = Tk()
         self.ventana_personaje.wm_title("Personaje")

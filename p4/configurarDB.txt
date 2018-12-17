@@ -17,4 +17,4 @@ mysql -u root -p < creacionObjetos.sql
 
 Lanzamos el programa mediante:
 
-python3 consultaPartidas.py localhost root CONTRASEÑA ddsi
+python3 Main.py localhost root CONTRASEÑA ddsi
