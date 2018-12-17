@@ -195,15 +195,64 @@ class Aplicacion(object):
         self.ventana_personaje.wm_title("Personaje")
 
         #Entrada para el personaje
-        self.personaje_buscado = StringVar()
-        self.entrada_personaje = Entry(self.ventana_personaje,textvariable = self.personaje_buscado)
+        self.entrada_personaje = Entry(self.ventana_personaje)
         self.entrada_personaje.grid(row = 0,column = 0, columnspan = 2)
 
-        #Botón para el guardado
-        self.boton_personaje = Button(self.ventana_personaje, textvariable = self.personaje_buscado)
-        self.boton_personaje,configure(command = self.query_personaje_2)
-        self.boton_entrada.grid(row = 1, column = 0, columnspan = 2)
+        #print("Entrada: "+self.entrada_personaje.get()+"\nPersonaje: "+self.personaje_buscado)
 
+        #Botón para el guardado
+        self.boton_personaje = Button(self.ventana_personaje, text="Enviar")
+        self.boton_personaje.configure(command = self.query_personaje_2)
+        self.boton_personaje.grid(row = 1, column = 0, columnspan = 2)
+
+    def query_personaje_2(self):
+        self.personaje_buscado = self.entrada_personaje.get()
+        print("Entrada: "+self.entrada_personaje.get()+"\nPersonaje: "+self.personaje_buscado)
+        #Lee el texto de la entrada
+        if self.personaje_buscado == "":
+            messagebox.showinfo("Error", "No ha introducido ningún nombre de personaje")
+            self.personaje_buscado= "W1lly"
+
+        #Buscamos al personaje en el sistema.
+        self.peticion= "SELECT identificador FROM Personaje WHERE nombre=\'"+self.personaje_buscado+"\';"
+        print("Peticion: "+self.peticion)
+        conexion = mdb.connect(self.ip, self.user, self.pswd, self.db)
+        with conexion:
+            cursor = conexion.cursor()
+            cursor.execute(self.peticion)
+            rows = cursor.fetchall()
+
+            if len(rows) == 0:
+                messagebox.showinfo("Error", "No hay ningún personaje con ese nombre")
+            else:
+                #Obtenemos las partidas asociadas a ese personaje
+                self.peticion= "SELECT par_id FROM Participa WHERE per_id=\'"+str(rows[0][0])+"\';"
+                print("Peticion:" + self.peticion)
+                cursor.execute(self.peticion)
+                rows = cursor.fetchall()
+                if len(rows) == 0:
+                    messagebox.showinfo("Error", "El personaje no tiene ninguna partida asociada")
+                else:
+                    self.peticion= "SELECT * FROM Partida WHERE identificador=\'"+str(rows[0][0])+"\';"
+                    print("Peticion:"+self.peticion)
+                    cursor.execute(self.peticion)
+                    rows = cursor.fetchall()
+                    if len(rows)==0:
+                        messagebox.showinfo("Error", "No hay ningún universo con ese identificador")
+                    else:
+                        # Almacenamos la info en un DataFrame
+                        self.df['identificador']=[rows[i][0] for i in range(len(rows))]
+                        self.df['nombre']=[rows[i][1] for i in range(len(rows))]
+                        self.df['log_fechas']=[rows[i][2] for i in range(len(rows))]
+                        self.df['uni_nombre']=[rows[i][3] for i in range(len(rows))]
+
+                        self.path_defecto="./data/ConsultarPartidasPersonaje.csv"
+
+        if self.df.empty:
+            self.ErrorNoDatos()
+        else:
+            self.PeticionAcabada()
+        self.ventana_personaje.destroy()
 
     def guardar_csv(self):
         if self.peticion_realizada:
